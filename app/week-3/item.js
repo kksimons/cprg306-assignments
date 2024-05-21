@@ -1,4 +1,6 @@
-export default function Item({ name, quantity, category }) {
+export default function Item({ item }) {
+  const { name, quantity, category } = item;
+
   return (
     <div className="bg-gray-100 p-4 m-2">
       <li>
