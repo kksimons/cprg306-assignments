@@ -10,6 +10,21 @@ export default function Home() {
       <p className="hover:text-red-700 hover:underline">
         <Link href="./week-3">Week 3 Assignment</Link>
       </p>
+      <p className="hover:text-red-700 hover:underline">
+        <Link href="./week-4/functions">Week 4 Assignment (functions)</Link>
+      </p>
+      <p className="hover:text-red-700 hover:underline">
+        <Link href="./week-4/counter">Week 4 Assignment (counter)</Link>
+      </p>
+      <p className="hover:text-red-700 hover:underline">
+        <Link href="./week-4/managed_form">Week 4 Assignment (form)</Link>
+      </p>
+      <p className="hover:text-red-700 hover:underline">
+        <Link href="./week-4/">Week 4 Assignment</Link>
+      </p>
+      <p className="hover:text-red-700 hover:underline">
+        <Link href="./week-5/">Week 5 Assignment</Link>
+      </p>
     </main>
   );
 }
