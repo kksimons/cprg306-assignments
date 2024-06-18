@@ -23,6 +23,12 @@ export default function Home() {
         <Link href="./week-4/">Week 4 Assignment</Link>
       </p>
       <p className="hover:text-red-700 hover:underline">
+        <Link href="./week-5/arrays">Week 5 Assignment (arrays)</Link>
+      </p>
+      <p className="hover:text-red-700 hover:underline">
+        <Link href="./week-5/contact">Week 5 Assignment (contact)</Link>
+      </p>
+      <p className="hover:text-red-700 hover:underline">
         <Link href="./week-5/">Week 5 Assignment</Link>
       </p>
     </main>
