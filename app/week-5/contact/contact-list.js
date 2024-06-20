@@ -36,7 +36,7 @@ function ContactList() {
 
   //looking for a true or false vale (what should we should or should not return)
   //if it equals all, our default, I want to show everything (and so by default)
-  if (filter != all) {
+  if (filter != "all") {
     contactArray = contactArray.filter((contact) => contact.type === filter);
   }
 
