@@ -37,6 +37,12 @@ export default function Home() {
       <p className="hover:text-red-700 hover:underline">
         <Link href="./week-6/">Week 6 Assignment</Link>
       </p>
+      <p className="hover:text-red-700 hover:underline">
+        <Link href="./week-7/class-example">Week 7 (class Example)</Link>
+      </p>
+      <p className="hover:text-red-700 hover:underline">
+        <Link href="./week-7/">Week 7 Assignment</Link>
+      </p>
     </main>
   );
 }
