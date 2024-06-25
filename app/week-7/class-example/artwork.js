@@ -13,7 +13,7 @@ export default function Artwork({ artworkObj }) {
     <div className="mx-20 my-10 p-5 bg-blue-400 rounded flex flex-col items-center">
       <h3 className="text-lg mb-4">{title}</h3>
       {/*h attribute here to affect size of image*/}
-      <div className="w-full max-w-2xl h-80 relative mb-4">
+      <div className="w-full h-80 relative mb-4">
         <Image
           src={primaryImageSmall}
           alt="image artwork"

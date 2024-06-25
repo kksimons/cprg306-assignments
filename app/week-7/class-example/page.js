@@ -1,4 +1,5 @@
 import Artwork from "./artwork";
+import Gallery from "./gallery";
 import SingleArt from "./single-art";
 
 export default function Page() {
@@ -8,7 +9,8 @@ export default function Page() {
       <h2 className="text-2xl text-center">
         from the Metropolitan Museum of Art
       </h2>
-      <SingleArt />
+      {/*<SingleArt />*/}
+      <Gallery />
     </main>
   );
 }
