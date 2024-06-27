@@ -38,15 +38,32 @@ function ItemList() {
     }
   });
 
+  const groupedItems = itemsArray.reduce((acc, item) => {
+    if (!acc[item.category]) {
+      acc[item.category] = [];
+    }
+    acc[item.category].push(item);
+    return acc;
+  }, {});
+
   const sortedItems = groupByCategory
-    ? Object.entries(itemsArray.reduce((acc, item) => {
-      if (!acc[item.category]) {
-        acc[item.category] = [];
-      }
-      acc[item.category].push(item);
-      return acc;
-    }, {})).sort((a, b) => a[0].localeCompare(b[0]))
-    : [{ category: '', items: itemsArray }];
+    ? Object.keys(groupedItems)
+      .sort((a, b) => {
+        const categoryA = a.toUpperCase();
+        const categoryB = b.toUpperCase();
+        if (categoryA < categoryB) {
+          return -1;
+        }
+        if (categoryA > categoryB) {
+          return 1;
+        }
+        return 0;
+      })
+      .map((category) => ({
+        category,
+        items: groupedItems[category],
+      }))
+    : [{ category: "", items: itemsArray }];
 
   return (
     <div>
