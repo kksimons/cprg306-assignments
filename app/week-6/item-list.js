@@ -38,12 +38,12 @@ function ItemList() {
     }
   });
 
-  const groupedItems = itemsArray.reduce((acc, item) => {
-    if (!acc[item.category]) {
-      acc[item.category] = [];
+  const groupedItems = itemsArray.reduce((groupedItems, item) => {
+    if (!groupedItems[item.category]) {
+      groupedItems[item.category] = [];
     }
-    acc[item.category].push(item);
-    return acc;
+    groupedItems[item.category].push(item);
+    return groupedItems;
   }, {});
 
   const sortedItems = groupByCategory
