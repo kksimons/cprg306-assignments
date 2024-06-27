@@ -1,12 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import itemsData from "./items.json";
 import Item from "./item";
 
-function ItemList() {
-  // Deep defensive copy of all data
-  let itemsArray = itemsData.map((item) => ({ ...item }));
-
+function ItemList({ items }) {
   const [sortBy, setSortBy] = useState("name");
   const [groupByCategory, setGroupByCategory] = useState(false);
 
@@ -20,7 +16,7 @@ function ItemList() {
   };
 
   // Sorting
-  itemsArray = itemsArray.sort((a, b) => {
+  items = items.sort((a, b) => {
     if (isNaN(parseInt(a[sortBy]))) {
       // Sorting alphabetically
       let valueA = a[sortBy].toUpperCase();
@@ -38,47 +34,30 @@ function ItemList() {
     }
   });
 
-  const groupedItems = itemsArray.reduce((groupedItems, item) => {
-    if (!groupedItems[item.category]) {
-      groupedItems[item.category] = [];
-    }
-    groupedItems[item.category].push(item);
-    return groupedItems;
-  }, {});
-
   const sortedItems = groupByCategory
-    ? Object.keys(groupedItems)
-      .sort((a, b) => {
-        const categoryA = a.toUpperCase();
-        const categoryB = b.toUpperCase();
-        if (categoryA < categoryB) {
-          return -1;
-        }
-        if (categoryA > categoryB) {
-          return 1;
-        }
-        return 0;
-      })
-      .map((category) => ({
-        category,
-        items: groupedItems[category],
-      }))
-    : [{ category: "", items: itemsArray }];
+    ? Object.entries(items.reduce((acc, item) => {
+      if (!acc[item.category]) {
+        acc[item.category] = [];
+      }
+      acc[item.category].push(item);
+      return acc;
+    }, {})).sort((a, b) => a[0].localeCompare(b[0]))
+    : [{ category: '', items }];
 
   return (
     <div>
-      <section className="flex mb-5 px-10 py-5 bg-blue-200 rounded shadow-lg">
+      <section className="flex mb-5 px-10 py-5 bg-blue-100 rounded shadow-lg justify-center">
         <div className="mr-4">
           <label className="font-semibold mr-2">Sort By:</label>
           <button
             onClick={() => handleChangeSortBy("name")}
-            className={`p-2 m-2 border rounded ${sortBy === "name" && !groupByCategory ? "bg-blue-400 text-white" : "bg-white text-black"}`}
+            className={`p-2 m-2 border rounded ${sortBy === "name" && !groupByCategory ? "bg-blue-500 text-white" : "bg-white text-black"}`}
           >
             Name
           </button>
           <button
             onClick={() => handleChangeSortBy("category")}
-            className={`p-2 m-2 border rounded ${sortBy === "category" && !groupByCategory ? "bg-blue-400 text-white" : "bg-white text-black"}`}
+            className={`p-2 m-2 border rounded ${sortBy === "category" && !groupByCategory ? "bg-blue-500 text-white" : "bg-white text-black"}`}
           >
             Category
           </button>
@@ -86,18 +65,18 @@ function ItemList() {
         <div>
           <button
             onClick={handleToggleGroupByCategory}
-            className={`p-2 m-2 border rounded ${groupByCategory ? "bg-blue-400 text-white" : "bg-white text-black"}`}
+            className={`p-2 m-2 border rounded ${groupByCategory ? "bg-blue-500 text-white" : "bg-white text-black"}`}
           >
             {groupByCategory ? "Ungroup by Category" : "Group by Category"}
           </button>
         </div>
       </section>
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {groupByCategory
           ? sortedItems.map(([category, items], index) => (
             <div key={index} className="col-span-3">
-              <h2 className="text-2xl font-bold capitalize mb-4">{category}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <h2 className="text-2xl font-bold capitalize mb-4 text-blue-700">{category}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {items.sort((a, b) => a.name.localeCompare(b.name)).map((item, idx) => (
                   <Item key={idx} item={item} />
                 ))}

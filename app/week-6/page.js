@@ -1,13 +1,11 @@
-'use client'
+'use client';
+import React, { useState } from "react";
 import ItemList from "./item-list.js";
-import NewItem from "./new-item.js"
-import itemsData from "./items.json"
-import { useState } from "react";
+import NewItem from "./new-item.js";
+import itemsData from "./items.json";
 
 export default function Page() {
-
   const [itemList, setItemList] = useState(
-    //taking props of item object and spreading them into a brand new object
     itemsData.map((item) => ({ ...item }))
   );
 
@@ -16,9 +14,14 @@ export default function Page() {
   };
 
   return (
-    <main>
-      <h1 className="text-3xl font-bold bg-sky-100 p-10">Shopping List</h1>
-      <ItemList />
+    <main className="bg-gray-50 min-h-screen p-10">
+      <h1 className="text-4xl font-bold text-center mb-10">Shopping List</h1>
+      <div className="max-w-4xl mx-auto mb-10">
+        <NewItem onAddItem={handleAddItem} />
+      </div>
+      <div className="max-w-6xl mx-auto">
+        <ItemList items={itemList} />
+      </div>
     </main>
   );
 }
