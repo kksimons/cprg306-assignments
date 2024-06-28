@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Item from "./item";
 
-function ItemList({ items }) {
+function ItemList({ items, onItemSelect }) {
   const [sortBy, setSortBy] = useState("name");
   const [groupByCategory, setGroupByCategory] = useState(false);
 
@@ -78,13 +78,13 @@ function ItemList({ items }) {
               <h2 className="text-2xl font-bold capitalize mb-4 text-blue-700">{category}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {items.sort((a, b) => a.name.localeCompare(b.name)).map((item, idx) => (
-                  <Item key={idx} item={item} />
+                  <Item key={idx} item={item} onSelect={onItemSelect} />
                 ))}
               </div>
             </div>
           ))
           : sortedItems[0].items.map((item, index) => (
-            <Item key={index} item={item} />
+            <Item key={index} item={item} onSelect={onItemSelect} />
           ))}
       </section>
     </div>

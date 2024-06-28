@@ -36,7 +36,7 @@ function NewItem({ onAddItem }) {
     <main>
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 m-4 rounded-lg shadow max-w-md mx-auto"
+        className="bg-white p-6 mb-4 rounded-lg shadow w-full"
       >
         <div className="flex space-x-2 mb-4">
           <input
