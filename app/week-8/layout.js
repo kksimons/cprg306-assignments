@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { AuthContextProvider, useUserAuth } from "./_utils/auth-context";
+import { AuthContextProvider } from "./_utils/auth-context";
 import Header from "./shopping-list/header";
 
 const Layout = ({ children }) => {

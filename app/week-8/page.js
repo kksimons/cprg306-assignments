@@ -50,18 +50,13 @@ function LandingPage() {
           Welcome to the Shopping App made in CPRG306
         </h1>
         {user ? (
-          <div>
-            <p className="mb-4">
-              Welcome, {user.displayName} ({user.email})
-            </p>
-            <button
-              onClick={handleSignOut}
-              className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200"
-              disabled={loading}
-            >
-              {loading ? "Signing out..." : "Sign Out"}
-            </button>
-          </div>
+          <button
+            onClick={handleSignOut}
+            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200"
+            disabled={loading}
+          >
+            {loading ? "Signing out..." : "Sign Out"}
+          </button>
         ) : (
           <div>
             <button

@@ -13,7 +13,7 @@ function LandingPage() {
     try {
       await gitHubSignIn();
     } catch (err) {
-      setError("Failed to sign in. Please try again.");
+      setError("Failed to sign in.");
     } finally {
       setLoading(false);
     }
@@ -25,7 +25,7 @@ function LandingPage() {
     try {
       await firebaseSignOut();
     } catch (err) {
-      setError("Failed to sign out. Please try again.");
+      setError("Failed to sign out.");
     } finally {
       setLoading(false);
     }
@@ -36,18 +36,13 @@ function LandingPage() {
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4">Welcome to the Shopping App</h1>
         {user ? (
-          <div>
-            <p className="mb-4">
-              Welcome, {user.displayName} ({user.email})
-            </p>
-            <button
-              onClick={handleSignOut}
-              className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200"
-              disabled={loading}
-            >
-              {loading ? "Signing out..." : "Sign Out"}
-            </button>
-          </div>
+          <button
+            onClick={handleSignOut}
+            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200"
+            disabled={loading}
+          >
+            {loading ? "Signing out..." : "Sign Out"}
+          </button>
         ) : (
           <div>
             <button

@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <header className="w-full flex justify-between items-center p-4 bg-white shadow-md">
-      <h1 className="text-xl font-bold">Shopping List</h1>
+      <h1 className="text-xl font-bold">CPRG306 Shopping List</h1>
       {user && (
         <button
           onClick={handleSignOut}

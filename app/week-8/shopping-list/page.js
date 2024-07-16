@@ -42,12 +42,12 @@ export default function Page() {
   };
 
   if (!user) {
-    return null; // Prevents flickering of the page before redirection
+    return null;
   }
 
   return (
     <main className="bg-gray-50 min-h-screen p-10">
-      <h1 className="text-4xl font-bold text-center mb-10">Shopping List</h1>
+      {/*<h1 className="text-4xl font-bold text-center mb-10">Shopping List</h1>*/}
       <div className="max-w-4xl mx-auto mb-10">
         <NewItem onAddItem={handleAddItem} />
       </div>
