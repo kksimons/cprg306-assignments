@@ -31,18 +31,26 @@ function LandingPage() {
     }
   };
 
+  //console.dir(user);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-4">Welcome to the Shopping App</h1>
+        <h1 className="text-2xl font-bold mb-4">Firebase Auth</h1>
         {user ? (
-          <button
-            onClick={handleSignOut}
-            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200"
-            disabled={loading}
-          >
-            {loading ? "Signing out..." : "Sign Out"}
-          </button>
+          <div>
+            <p className="mb-4">
+              Welcome, {user.displayName} ({user.email})
+              <img className="w-8 h-8" src={user.photoURL}></img>
+            </p>
+            <button
+              onClick={handleSignOut}
+              className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200"
+              disabled={loading}
+            >
+              {loading ? "Signing out..." : "Sign Out"}
+            </button>
+          </div>
         ) : (
           <div>
             <button

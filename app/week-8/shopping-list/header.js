@@ -18,14 +18,20 @@ const Header = () => {
 
   return (
     <header className="w-full flex justify-between items-center p-4 bg-white shadow-md">
-      <h1 className="text-xl font-bold">CPRG306 Shopping List</h1>
+      <h1 className="text-xl font-bold">Shopping List</h1>
       {user && (
-        <button
-          onClick={handleSignOut}
-          className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200"
-        >
-          Sign Out
-        </button>
+        <div className="flex items-center space-x-4">
+          <p className="text-sm font-semibold">Welcome, {user.displayName}</p>
+          {user.photoURL && (
+            <img src={user.photoURL} className="w-10 h-10 rounded-full" />
+          )}
+          <button
+            onClick={handleSignOut}
+            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200"
+          >
+            Sign Out
+          </button>
+        </div>
       )}
     </header>
   );
