@@ -18,14 +18,17 @@ export default function Item({ item, onSelect }) {
 
   return (
     <div
-      className={`p-4 rounded shadow cursor-pointer ${
+      className={`relative p-4 rounded shadow cursor-pointer ${
         categoryColors[category] || "bg-gray-200"
-      }`}
+      } group`}
       onClick={() => onSelect(item)}
     >
       <div className="font-bold text-lg capitalize">{name}</div>
       <div className="text-sm">
         Buy {quantity} in {category}
+      </div>
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full px-2 py-1 bg-gray-700 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        Click to get meal ideas
       </div>
     </div>
   );
