@@ -1,29 +1,38 @@
 "use client";
-import React, { useState } from "react";
-import ItemList from "./item-list.js";
-import NewItem from "./new-item.js";
-import MealIdeas from "./meal-ideas.js";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useUserAuth } from "../_utils/auth-context";
+import ItemList from "./item-list";
+import NewItem from "./new-item";
+import MealIdeas from "./meal-ideas";
 import itemsData from "./items.json";
 
 export default function Page() {
+  const { user } = useUserAuth();
+  const router = useRouter();
   const [itemList, setItemList] = useState(
     itemsData.map((item) => ({ ...item }))
   );
   const [selectedItemName, setSelectedItemName] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(() => {
+    if (!user) {
+      router.push("/week-8");
+    }
+  }, [user, router]);
+
   const handleAddItem = (newItem) => {
     setItemList([...itemList, newItem]);
   };
 
   const handleItemSelect = (item) => {
-    // Clean up the item name for the API
     const cleanedName = item.name
-      .split(",")[0] // Remove quantity and size and then
+      .split(",")[0]
       .replace(
         /([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C-\uDBFF\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDDFF])/g,
         ""
-      ); // Remove emojis
+      );
     setSelectedItemName(cleanedName);
     setIsModalOpen(true);
   };
@@ -31,6 +40,10 @@ export default function Page() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  if (!user) {
+    return null; // Prevents flickering of the page before redirection
+  }
 
   return (
     <main className="bg-gray-50 min-h-screen p-10">
