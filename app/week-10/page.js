@@ -11,7 +11,7 @@ function LandingPage() {
 
   useEffect(() => {
     if (user) {
-      router.push("/week-8/shopping-list");
+      router.push("/week-10/shopping-list");
     }
   }, [user, router]);
 

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Item from "./item";
 
-function ItemList({ items, onItemSelect }) {
+function ItemList({ items, onItemSelect, onDeleteItem }) {
   const [sortBy, setSortBy] = useState("name");
   const [groupByCategory, setGroupByCategory] = useState(false);
 
@@ -94,13 +94,23 @@ function ItemList({ items, onItemSelect }) {
                   {items
                     .sort((a, b) => a.name.localeCompare(b.name))
                     .map((item, idx) => (
-                      <Item key={idx} item={item} onSelect={onItemSelect} />
+                      <Item
+                        key={idx}
+                        item={item}
+                        onSelect={onItemSelect}
+                        onDelete={onDeleteItem}
+                      />
                     ))}
                 </div>
               </div>
             ))
           : sortedItems[0].items.map((item, index) => (
-              <Item key={index} item={item} onSelect={onItemSelect} />
+              <Item
+                key={index}
+                item={item}
+                onSelect={onItemSelect}
+                onDelete={onDeleteItem}
+              />
             ))}
       </section>
     </div>

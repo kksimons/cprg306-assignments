@@ -36,7 +36,7 @@ function NewItem({ onAddItem }) {
     <main>
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 mb-4 rounded-lg shadow w-full"
+        className="bg-white p-6 mb-4 rounded-lg shadow w-full text-black"
       >
         <div className="flex space-x-2 mb-4">
           <input
@@ -45,7 +45,7 @@ function NewItem({ onAddItem }) {
             onChange={handleName}
             value={name}
             placeholder="Item name"
-            className="p-2 rounded-lg font-sans border flex-grow m-1"
+            className="p-2 rounded-lg font-sans border flex-grow m-1 text-black"
           />
           <input
             type="number"
@@ -54,14 +54,14 @@ function NewItem({ onAddItem }) {
             max={99}
             onChange={handleQuantity}
             value={quantity}
-            className="p-2 rounded-lg font-sans border w-20 m-1"
+            className="p-2 rounded-lg font-sans border w-20 m-1 text-black"
           />
         </div>
         <div className="mb-4">
           <select
             onChange={handleCategory}
             value={category}
-            className="p-2 rounded-lg font-sans border w-full m-1"
+            className="p-2 rounded-lg font-sans border w-full m-1 text-black"
           >
             <option value="produce">Produce</option>
             <option value="dairy">Dairy</option>
@@ -77,7 +77,7 @@ function NewItem({ onAddItem }) {
           </select>
         </div>
         <div>
-          <button className="bg-blue-500 hover:bg-blue-600 rounded-md text-white px-4 py-2 w-full">
+          <button className="bg-blue-500 hover:bg-blue-600 rounded-md px-4 py-2 w-full text-white">
             Add Item
           </button>
         </div>

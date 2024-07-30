@@ -5,25 +5,39 @@ import { useUserAuth } from "../_utils/auth-context";
 import ItemList from "./item-list";
 import NewItem from "./new-item";
 import MealIdeas from "./meal-ideas";
-import itemsData from "./items.json";
+import {
+  dbAddItem,
+  dbDeleteItem,
+  dbGetAllItems,
+} from "../_services/shopping-list-service";
 
 export default function Page() {
   const { user } = useUserAuth();
   const router = useRouter();
-  const [itemList, setItemList] = useState(
-    itemsData.map((item) => ({ ...item }))
-  );
+  const [itemList, setItemList] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (!user) {
-      router.push("/week-8");
+      router.push("/week-10");
+    } else {
+      loadItems();
     }
-  }, [user, router]);
+  }, [user]);
 
-  const handleAddItem = (newItem) => {
-    setItemList([...itemList, newItem]);
+  const loadItems = async () => {
+    if (user) {
+      const items = await dbGetAllItems(user.uid);
+      setItemList(items);
+    }
+  };
+
+  const handleAddItem = async (newItem) => {
+    if (user) {
+      const newItemId = await dbAddItem(user.uid, newItem);
+      setItemList([...itemList, { ...newItem, id: newItemId }]);
+    }
   };
 
   const handleItemSelect = (item) => {
@@ -45,6 +59,13 @@ export default function Page() {
     return null;
   }
 
+  const handleDeleteItem = async (itemId) => {
+    if (user) {
+      await dbDeleteItem(user.uid, itemId);
+      setItemList(itemList.filter((item) => item.id !== itemId));
+    }
+  };
+
   return (
     <main className="bg-gray-50 min-h-screen p-10">
       {/*<h1 className="text-4xl font-bold text-center mb-10">Shopping List</h1>*/}
@@ -52,7 +73,11 @@ export default function Page() {
         <NewItem onAddItem={handleAddItem} />
       </div>
       <div className="max-w-4xl mx-auto">
-        <ItemList items={itemList} onItemSelect={handleItemSelect} />
+        <ItemList
+          items={itemList}
+          onItemSelect={handleItemSelect}
+          onDeleteItem={handleDeleteItem}
+        />
       </div>
       {isModalOpen && (
         <MealIdeas ingredient={selectedItemName} closeModal={closeModal} />
